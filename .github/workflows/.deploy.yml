@@ -3,17 +3,12 @@ name: Terraform Deployment
 on:
   push:
     branches:
-      - 'dev'         # Branche "dev" directe
-      - 'dev/**'      # Toutes les branches qui commencent par dev/
-      - 'main'        # Branche de production
-  pull_request:
-    branches:
+      - 'dev'
       - 'dev/**'
       - 'main'
 
 jobs:
   terraform:
-    name: Terraform Apply
     runs-on: ubuntu-latest
 
     env:
@@ -31,7 +26,6 @@ jobs:
         with:
           terraform_version: 1.8.4
 
-      # Déterminer le dossier en fonction de la branche
       - name: Set environment path
         id: setpath
         run: |
@@ -39,23 +33,20 @@ jobs:
           echo "Current branch: $branch"
 
           if [[ "$branch" == dev/* || "$branch" == "dev" ]]; then
-            echo "env_path=envs/dev" >> $GITHUB_OUTPUT
+            echo "env_path=terraform/envs/dev" >> $GITHUB_OUTPUT
           elif [[ "$branch" == "main" ]]; then
-            echo "env_path=envs/prod" >> $GITHUB_OUTPUT
+            echo "env_path=terraform/envs/prod" >> $GITHUB_OUTPUT
           else
             echo "Branch not recognized, skipping"
             exit 1
           fi
 
-      # Initialisation Terraform
       - name: Terraform Init
         run: terraform -chdir=${{ steps.setpath.outputs.env_path }} init
 
-      # Plan Terraform
       - name: Terraform Plan
         run: terraform -chdir=${{ steps.setpath.outputs.env_path }} plan -out=tfplan
 
-      # Apply automatique (dev/* et main)
       - name: Terraform Apply
         if: startsWith(github.ref_name, 'dev/') || github.ref_name == 'dev' || github.ref_name == 'main'
         run: terraform -chdir=${{ steps.setpath.outputs.env_path }} apply -auto-approve tfplan
