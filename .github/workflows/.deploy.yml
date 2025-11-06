@@ -3,10 +3,13 @@ name: Terraform Deployment
 on:
   push:
     branches:
-      - dev
-      - 'dev/**'    
-      - main
+      - 'dev'         # Branche "dev" directe
+      - 'dev/**'      # Toutes les branches qui commencent par dev/
+      - 'main'        # Branche de production
   pull_request:
+    branches:
+      - 'dev/**'
+      - 'main'
 
 jobs:
   terraform:
@@ -32,9 +35,12 @@ jobs:
       - name: Set environment path
         id: setpath
         run: |
-          if [[ "${GITHUB_REF_NAME}" == "dev" ]]; then
+          branch="${GITHUB_REF_NAME}"
+          echo "Current branch: $branch"
+
+          if [[ "$branch" == dev/* || "$branch" == "dev" ]]; then
             echo "env_path=envs/dev" >> $GITHUB_OUTPUT
-          elif [[ "${GITHUB_REF_NAME}" == "main" ]]; then
+          elif [[ "$branch" == "main" ]]; then
             echo "env_path=envs/prod" >> $GITHUB_OUTPUT
           else
             echo "Branch not recognized, skipping"
@@ -49,7 +55,7 @@ jobs:
       - name: Terraform Plan
         run: terraform -chdir=${{ steps.setpath.outputs.env_path }} plan -out=tfplan
 
-      # Apply automatique (optionnel : tu peux mettre "if: github.ref_name == 'main'" pour limiter à prod)
+      # Apply automatique (dev/* et main)
       - name: Terraform Apply
-        if: github.ref_name == 'main' || github.ref_name == 'dev'
+        if: startsWith(github.ref_name, 'dev/') || github.ref_name == 'dev' || github.ref_name == 'main'
         run: terraform -chdir=${{ steps.setpath.outputs.env_path }} apply -auto-approve tfplan
