@@ -14,3 +14,11 @@ module "storage_account" {
   environnement = var.environnement
 
 }
+
+
+module "container" {
+  source = "../../modules/container"
+  storage_account_name = module.storage_account.sotrage_account_name
+  for_each = toset(["landing","cleansed","curated"])
+  container_name = each.key #var.container_name si on voulait créer un container à la fois, mais faut dupliquer le module 3 fois 
+}
