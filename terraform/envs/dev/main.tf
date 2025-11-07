@@ -10,7 +10,7 @@ module "storage_account" {
   source = "../../modules/storage_data_lake"
   storage_account_name = var.storage_account_name
   location = var.location
-  resource_group_name = var.resource_group_name
+  resource_group_name = module.rg.resource_group_name
   environnement = var.environnement
 
 }
