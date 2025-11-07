@@ -59,7 +59,7 @@ variable "sql_server_name" {
 
 variable "sql_database_login" {
   description = "Le login pour la database"
-  type ="string"
+  type =string
 }
 
 variable "sql_database_password" {
