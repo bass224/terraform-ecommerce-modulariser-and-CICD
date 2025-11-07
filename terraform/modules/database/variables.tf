@@ -14,11 +14,12 @@ variable "resource_group_name" {
     type = string
 }
 
-variable "location" {
+variable "location_sql_server" {
   description = "Région Azure"
   type = string
   default = "France Central"
 }
+
 
 variable "sql_server_name" {
   description = "Nom du server sql"

@@ -66,3 +66,9 @@ variable "sql_database_password" {
   description = "Le mot de passe de la base de données"
   type = string
 }
+
+variable "location_sql_server" {
+  description = "Région Azure"
+  type = string
+  default = "France Central"
+}

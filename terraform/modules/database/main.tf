@@ -6,7 +6,7 @@
 resource "azurerm_mssql_server" "sql_server" {
   name =var.sql_server_name
   resource_group_name = var.resource_group_name
-  location = var.location
+  location = var.location_sql_server
   administrator_login = var.sql_database_login
   administrator_login_password = var.sql_database_password
   version = "12.0"
