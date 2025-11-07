@@ -18,3 +18,9 @@ variable "location" {
   type = string
   default = "westeurope"
 }
+
+
+variable "storage_account_name" {
+    description = "Nom du compte de stockage"
+    type = string  
+}

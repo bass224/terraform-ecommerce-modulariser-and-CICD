@@ -5,6 +5,7 @@ variable "environnement" {
   type = string
 }
 
+#Le groupe de ressource
 
 variable "resource_group_name" {
     description = "Nom du resource group"
@@ -14,5 +15,5 @@ variable "resource_group_name" {
 variable "location" {
   description = "Région Azure"
   type = string
-  default = "France Central"
 }
+
