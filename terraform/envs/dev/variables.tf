@@ -32,3 +32,11 @@ variable "container_name" {
   description = "Nom du container"
   type = string
 }
+
+#pour le datafactory 
+
+
+variable "datafactory_name" {
+  description = "Nom du datafactory"
+  type = string
+}
