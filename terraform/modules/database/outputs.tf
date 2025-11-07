@@ -8,5 +8,5 @@ output "sql_server_name" {
 
 output "server_id" {
   description = "l'id de la database crée"
-  value = azurerm_mssql_database.sql_server.id
+  value = azurerm_mssql_server.sql_server.id
 }
