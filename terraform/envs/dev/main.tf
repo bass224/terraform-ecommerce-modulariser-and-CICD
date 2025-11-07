@@ -52,8 +52,8 @@ module "sql_server" {
   sql_server_name = var.sql_server_name
   resource_group_name = module.rg.resource_group_name
   location_sql_server = var.location_sql_server
-  SQL_SERVER_DATABASE_LOGIN =  var.SQL_SERVER_DATABASE_LOGIN
-  SQL_SERVER_DATABASE_PASSWORD = var.SQL_SERVER_DATABASE_PASSWORD
+  sql_database_login = var.sql_database_login
+  sql_database_password = var.sql_database_password
   environnement = var.environnement
 
 }

@@ -57,12 +57,12 @@ variable "sql_server_name" {
 
 
 
-variable "SQL_SERVER_DATABASE_LOGIN" {
+variable "sql_database_login" {
   description = "Le login pour la database"
   type =string
 }
 
-variable "SQL_SERVER_DATABASE_PASSWORD" {
+variable "sql_database_password" {
   description = "Le mot de passe de la base de données"
   type = string
 }

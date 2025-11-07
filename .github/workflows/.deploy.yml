@@ -16,8 +16,8 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-      SQL_SERVER_DATABASE_LOGIN: ${{ secrets.SQL_SERVER_DATABASE_LOGIN }}
-      SQL_SERVER_DATABASE_PASSWORD: ${{ secrets.SQL_SERVER_DATABASE_PASSWORD }}
+      SQL_DATABASE_LOGIN: ${{ secrets.SQL_SERVER_DATABASE_LOGIN }}
+      SQL_DATABASE_PASSWORD: ${{ secrets.SQL_SERVER_DATABASE_PASSWORD }}
 
     steps:
       - name: Checkout repository
@@ -52,13 +52,13 @@ jobs:
       - name: Terraform Plan
         run: terraform -chdir=${{ steps.setpath.outputs.env_path }} plan -out=tfplan
         env:
-          TF_VAR_SQL_SERVER_DATABASE_LOGIN: ${{ env.SQL_SERVER_DATABASE_LOGIN }}
-          TF_VAR_SQL_SERVER_DATABASE_PASSWORD: ${{ env.SQL_SERVER_DATABASE_PASSWORD }}
+          TF_VAR_sql_database_login: ${{ env.SQL_DATABASE_LOGIN }}
+          TF_VAR_sql_database_password: ${{ env.SQL_DATABASE_PASSWORD }}
 
       # Application du plan Terraform
       - name: Terraform Apply
         if: startsWith(github.ref_name, 'dev/') || github.ref_name == 'dev' || github.ref_name == 'main'
         run: terraform -chdir=${{ steps.setpath.outputs.env_path }} apply -auto-approve tfplan
         env:
-          TF_VAR_SQL_SERVER_DATABASE_LOGIN: ${{ env.SQL_SERVER_DATABASE_LOGIN }}
-          TF_VAR_SQL_SERVER_DATABASE_PASSWORD: ${{ env.SQL_SERVER_DATABASE_PASSWORD }}
+          TF_VAR_sql_database_login: ${{ env.SQL_DATABASE_LOGIN }}
+          TF_VAR_sql_database_password: ${{ env.SQL_DATABASE_PASSWORD }}
