@@ -35,3 +35,16 @@ variable "sql_database_password" {
   description = "Le mot de passe de la base de données"
   type = string
 }
+
+
+#la database
+
+variable "sql_database_name" {
+  description = "Nom de la base de données SQL"
+  type        = string
+}
+
+variable "sql_server_id" {
+  description = "ID du serveur SQL sur lequel créer la base"
+  type        = string
+}

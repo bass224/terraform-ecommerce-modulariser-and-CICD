@@ -55,5 +55,14 @@ module "sql_server" {
   sql_database_login = var.sql_database_login
   sql_database_password = var.sql_database_password
   environnement = var.environnement
+}
+
+
+module "sql_database" {
+  source = "../../modules/sql_database"
+  mydb_name = var.mydb_name
+  sql_server_id = module.sql_server.id
+  environment = var.environnement
 
 }
+

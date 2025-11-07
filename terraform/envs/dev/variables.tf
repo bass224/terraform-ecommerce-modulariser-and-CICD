@@ -72,3 +72,10 @@ variable "location_sql_server" {
   type = string
   default = "France Central"
 }
+
+
+# la base de données 
+variable "mydb_name" {
+  description = "le nom de la database"
+  type = string
+}
