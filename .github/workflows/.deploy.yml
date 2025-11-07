@@ -28,6 +28,7 @@ jobs:
         with:
           terraform_version: 1.8.4
 
+      # Détermine le chemin d'environnement selon la branche
       - name: Set environment path
         id: setpath
         run: |
@@ -43,18 +44,21 @@ jobs:
             exit 1
           fi
 
+      # Initialisation Terraform
       - name: Terraform Init
         run: terraform -chdir=${{ steps.setpath.outputs.env_path }} init
 
+      # Plan Terraform
       - name: Terraform Plan
         run: terraform -chdir=${{ steps.setpath.outputs.env_path }} plan -out=tfplan
         env:
-          TF_VAR_sql_server_database_login: ${{ env.SQL_SERVER_DATABASE_LOGIN }}
-          TF_VAR_sql_server_database_password: ${{ env.SQL_SERVER_DATABASE_PASSWORD }}
+          TF_VAR_SQL_SERVER_DATABASE_LOGIN: ${{ env.SQL_SERVER_DATABASE_LOGIN }}
+          TF_VAR_SQL_SERVER_DATABASE_PASSWORD: ${{ env.SQL_SERVER_DATABASE_PASSWORD }}
 
+      # Application du plan Terraform
       - name: Terraform Apply
         if: startsWith(github.ref_name, 'dev/') || github.ref_name == 'dev' || github.ref_name == 'main'
         run: terraform -chdir=${{ steps.setpath.outputs.env_path }} apply -auto-approve tfplan
         env:
-          TF_VAR_sql_server_database_login: ${{ env.SQL_SERVER_DATABASE_LOGIN }}
-          TF_VAR_sql_server_database_password: ${{ env.SQL_SERVER_DATABASE_PASSWORD }}
+          TF_VAR_SQL_SERVER_DATABASE_LOGIN: ${{ env.SQL_SERVER_DATABASE_LOGIN }}
+          TF_VAR_SQL_SERVER_DATABASE_PASSWORD: ${{ env.SQL_SERVER_DATABASE_PASSWORD }}
