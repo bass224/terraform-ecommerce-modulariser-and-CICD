@@ -4,4 +4,4 @@ location = "westeurope"
 environnement = "dev" 
 storage_account_name = "mystoragebass224"
 
-#container_name = "landing"
+container_name = "test"
