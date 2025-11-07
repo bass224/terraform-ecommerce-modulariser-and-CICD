@@ -17,6 +17,7 @@ variable "resource_group_name" {
 variable "location" {
   description = "Région Azure"
   type = string
+  default = "France Central"
 }
 
 variable "sql_server_name" {
