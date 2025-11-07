@@ -3,5 +3,11 @@
 
 output "container_name" {
     description = "le nom du container crée"
-  value = [for c in azurerm_storage_container.container : c.name]
+  value = azurerm_storage_container.container.name
+}
+
+
+output "container_id" {
+  description = "l'id du container"
+  value = azurerm_storage_container.container.id
 }
