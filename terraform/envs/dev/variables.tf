@@ -55,3 +55,14 @@ variable "sql_server_name" {
   type = string
 }
 
+
+
+variable "sql_database_login" {
+  description = "Le login pour la database"
+  type ="string"
+}
+
+variable "sql_database_password" {
+  description = "Le mot de passe de la base de données"
+  type = string
+}
