@@ -35,3 +35,12 @@ module "datafactory" {
   location = module.rg.resource_group_location
 }
 
+#Module pour le workspace databricks 
+
+module "databricks_wkspace" {
+  source = "../../modules/databricks"
+  db_workspace_name = var.db_workspace_name
+  resource_group_name = module.rg.resource_group_name
+  location = module.rg.resource_group_location
+}
+

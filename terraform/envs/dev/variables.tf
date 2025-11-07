@@ -40,3 +40,10 @@ variable "datafactory_name" {
   description = "Nom du datafactory"
   type = string
 }
+
+#pour le workspace databricks 
+variable "db_workspace_name" {
+  description = "Nom du workspace"
+  type = string
+}
+
