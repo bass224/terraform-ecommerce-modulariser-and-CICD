@@ -44,3 +44,14 @@ module "databricks_wkspace" {
   location = module.rg.resource_group_location
 }
 
+
+#Module du server sql 
+
+module "sql_server" {
+  source = "../../modules/database"
+  sql_server_name = var.sql_server_name
+  resource_group_name = module.rg.resource_group_name
+  location = module.rg.resource_group_location
+  environnement = var.environnement
+  
+}

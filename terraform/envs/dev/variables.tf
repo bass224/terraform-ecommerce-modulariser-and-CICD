@@ -47,3 +47,11 @@ variable "db_workspace_name" {
   type = string
 }
 
+#pour le server sql
+
+
+variable "sql_server_name" {
+  description = "Nom du server sql"
+  type = string
+}
+
