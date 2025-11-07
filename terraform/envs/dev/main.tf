@@ -61,7 +61,7 @@ module "sql_server" {
 module "sql_database" {
   source = "../../modules/sql_database"
   mydb_name = var.mydb_name
-  sql_server_id = module.sql_server.id
+  sql_server_id = module.sql_server.database_id
   environment = var.environnement
 
 }
