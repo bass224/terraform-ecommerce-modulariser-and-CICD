@@ -80,6 +80,13 @@ variable "mydb_name" {
   type = string
 }
 
+#pour le keyvault ressource group 
+
+variable "resource_group_keyvault_name" {
+    description = "Nom du resource group"
+    type = string
+}
+
 
 #--- pour le link service 
 

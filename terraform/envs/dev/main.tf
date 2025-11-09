@@ -66,6 +66,17 @@ module "sql_database" {
 
 }
 
+#création d'un ressource group pour le keyvault 
+
+module "rg_kevault" {
+  source = "../../modules/resource_group"
+  resource_group_name = var.resource_group_keyvault_name
+  location = var.location
+  environnement = var.environnement
+
+}
+
+
 #module pour le link service
 /*
 module "link_services" {
