@@ -88,7 +88,9 @@ variable "sql_database_ls_name" {
   type = string
 }
 
+/*
 variable "data_factory_id" {
   description = "l'id du datafactory "
 }
 
+*/
