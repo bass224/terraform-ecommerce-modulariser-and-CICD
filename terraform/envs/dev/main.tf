@@ -67,7 +67,7 @@ module "sql_database" {
 }
 
 #module pour le link service
-
+/*
 module "link_services" {
   source = "../../modules/data_factory/modules/link_services"
   sql_database_ls_name =var.sql_database_ls_name
@@ -75,5 +75,6 @@ module "link_services" {
   datafactory_name =module.datafactory.datafactory_name
 
 }
+*/
 
 
