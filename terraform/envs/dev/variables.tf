@@ -104,6 +104,23 @@ variable "key_vault_name" {
   type = string
 }
 
+#assignement des rôles lecture et ecriture pour le principal terraform
+
+
+variable "scope_name" {
+  description = "l'id du kv"
+  type = number
+}
+
+variable "role_assignement_writer" {
+  description = "le rôle à assigner"
+  type = string
+}
+
+variable "role_assignement_reader" {
+  description = "le rôle à assigner"
+  type = string
+}
 
 /*
 variable "data_factory_id" {

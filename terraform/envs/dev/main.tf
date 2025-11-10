@@ -85,6 +85,21 @@ module "key_vault" {
   location = module.rg_kevault.resource_group_location
 }
 
+#assignation du rôle pour lire des secrets à notre service princiapl terraform 
+
+module "role_wirter" {
+  source = "../../modules/key_vault_roles"
+  scope = module.key_vault.key_vault_id
+  role = var.role_assignement_writer
+}
+
+module "role_reader" {
+  source = "../../modules/key_vault_roles"
+  scope = module.key_vault.key_vault_id
+  role = var.role_assignement_reader
+}
+
+
 #module pour le link service
 /*
 module "link_services" {
