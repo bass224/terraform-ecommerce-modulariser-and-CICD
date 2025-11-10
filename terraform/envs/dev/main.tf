@@ -81,6 +81,8 @@ module "rg_kevault" {
 module "key_vault" {
   source = "../../modules/key_vault"
   name = var.key_vault_name
+  resource_group_name = module.rg_kevault.name
+  location = module.rg_kevault.location
 }
 
 #module pour le link service
