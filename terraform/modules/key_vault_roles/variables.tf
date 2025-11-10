@@ -1,7 +1,7 @@
 
 variable "scope" {
   description = "l'id du kv"
-  type = number
+  type = string
 }
 
 variable "role" {
