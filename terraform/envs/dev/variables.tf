@@ -107,11 +107,6 @@ variable "key_vault_name" {
 #assignement des rôles lecture et ecriture pour le principal terraform
 
 
-variable "scope_name" {
-  description = "l'id du kv"
-  type = number
-}
-
 variable "role_assignement_writer" {
   description = "le rôle à assigner"
   type = string
