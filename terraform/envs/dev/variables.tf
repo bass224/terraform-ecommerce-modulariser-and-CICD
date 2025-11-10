@@ -95,6 +95,16 @@ variable "sql_database_ls_name" {
   type = string
 }
 
+
+#le keyvault 
+
+
+variable "key_vault_name" {
+  description = "nom du key vault"
+  type = string
+}
+
+
 /*
 variable "data_factory_id" {
   description = "l'id du datafactory "

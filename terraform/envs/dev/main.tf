@@ -76,6 +76,12 @@ module "rg_kevault" {
 
 }
 
+#création du keyvault 
+
+module "key_vault" {
+  source = "../../modules/key_vault"
+  name = var.key_vault_name
+}
 
 #module pour le link service
 /*
