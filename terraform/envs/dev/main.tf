@@ -100,15 +100,22 @@ module "role_reader" {
 }
 
 
-#module pour le link service
-/*
+#création du link service pour le key vault (qui va aller récupérer le connection string et le mdp après pour le 
+#link service sql database et les autres)
+
+module "ls_kv" {
+  source = "../../modules/key_vault_ls"
+  name = var.ls_kv_name
+  data_factory_id = module.datafactory.datafactory_id
+  key_vault_id = module.key_vault.key_vault_id
+}
+
+#création du link service 
+
 module "link_services" {
   source = "../../modules/data_factory/modules/link_services"
-  sql_database_ls_name =var.sql_database_ls_name
-  data_factory_id=module.datafactory.datafactory_id
-  datafactory_name =module.datafactory.datafactory_name
-
+  name = var.ls_sql_name
+  datafactory_id = module.datafactory.datafactory_id
+  linked_service_name = var.ls_kv_name
+  secret_name = var.secret_name
 }
-*/
-
-

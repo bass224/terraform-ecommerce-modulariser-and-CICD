@@ -88,13 +88,6 @@ variable "resource_group_keyvault_name" {
 }
 
 
-#--- pour le link service 
-
-variable "sql_database_ls_name" {
-  description = "le nom du link service sql database"
-  type = string
-}
-
 
 #le keyvault 
 
@@ -117,9 +110,21 @@ variable "role_assignement_reader" {
   type = string
 }
 
-/*
-variable "data_factory_id" {
-  description = "l'id du datafactory "
+
+#ls du key vault
+
+variable "ls_kv_name" {
+  description = "le nom du link service du key vault"
+  type = string
 }
 
-*/
+variable "secret_name" {
+  description = "le nom du secret qu'on a stocké dans le keyvault pour la connection string"
+  type = string
+}
+#pour le link service sql database 
+
+variable "ls_sql_name" {
+  description = "le nom du link services"
+  type = string
+}
