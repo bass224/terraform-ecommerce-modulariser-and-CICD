@@ -110,7 +110,7 @@ module "ls_kv" {
   key_vault_id = module.key_vault.key_vault_id
 }
 
-#création du link service 
+#création du link service du sql database
 
 module "link_services" {
   source = "../../modules/data_factory/modules/link_services"
@@ -118,4 +118,13 @@ module "link_services" {
   datafactory_id = module.datafactory.datafactory_id
   linked_service_name = module.ls_kv.ls_kv_name
   secret_name = var.secret_name
+}
+
+#Création du link service adls_gen2
+module "link_services_adls_gen2" {
+  source = "../../modules/data_factory/modules/link_services_adls"
+  name = var.ls_adls_gen2_name
+  datafactory_id = module.datafactory.datafactory_id
+  storage_acount_name = module.storage_account.storage_account_name
+  
 }

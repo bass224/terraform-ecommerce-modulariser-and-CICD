@@ -128,3 +128,11 @@ variable "ls_sql_name" {
   description = "le nom du link services"
   type = string
 }
+#pour le link service adls_gen2
+
+variable "ls_adls_gen2_name" {
+  description = "le nom du link service adls gen2"
+  type = string
+}
+
+
