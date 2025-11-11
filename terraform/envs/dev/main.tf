@@ -116,6 +116,6 @@ module "link_services" {
   source = "../../modules/data_factory/modules/link_services"
   name = var.ls_sql_name
   datafactory_id = module.datafactory.datafactory_id
-  linked_service_name = var.ls_kv_name
+  linked_service_name = module.ls_kv.ls_kv_name
   secret_name = var.secret_name
 }
